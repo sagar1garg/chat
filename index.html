@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Socket client</title>
+</head>
+<body>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+
+<script>
+  var socket = io('https://battlepyk-217504.appspot.com/');
+  socket.on('connect', function(){
+      console.log('COnnected to the server.')
+  });
+  socket.on('event', function(data){});
+  socket.emit('joinRoom',{room:'room3'});
+  socket.emit('roomMessage',{room:'room3'},function(data){
+      console.log(data)
+  });
+  socket.emit('newMessage',{room:'room3',message:"hiii dfkgyyuihiuhihug", username: "sg"},function(data){
+      console.log(data)
+  });
+  socket.on('chatMessage', function(data){
+      console.log('chat data this room', data)
+  });
+  socket.on('message', function(data){
+      console.log('new message', data)
+  });
+  socket.on('disconnect', function(){});
+</script>
+</body>
+</html>
